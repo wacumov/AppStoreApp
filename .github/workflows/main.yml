@@ -1,0 +1,32 @@
+name: Main
+
+on:
+  push:
+    branches: ["main"]
+
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: macos-12
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+    - name: Lint
+      run: swiftformat --lint .
+    - name: XcodeGen
+      uses: xavierLowmiller/xcodegen-action@1.1.2
+      with:
+        spec: project.yml
+        version: 2.25.0
+    - name: Setup Xcode
+      uses: maxim-lobanov/setup-xcode@v1
+      with:
+        xcode-version: "13.4"
+    - name: Install xcbeautify
+      run: |
+        brew install xcbeautify
+    - name: Build
+      run: |
+        set -o pipefail && xcodebuild clean build -project AppStoreApp.xcodeproj -scheme AppStoreApp -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 13' | xcbeautify
