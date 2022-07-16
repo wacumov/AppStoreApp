@@ -1,0 +1,3 @@
+options:
+  minimumXcodeGenVersion: 2.25.0
+  createIntermediateGroups: true

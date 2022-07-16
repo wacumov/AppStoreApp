@@ -1,0 +1,16 @@
+name: AppStoreApp
+
+fileGroups:
+  - README.md
+
+include:
+  - Project/options.yml
+  - Project/settings.yml
+
+targets:
+  AppStoreApp:
+    type: application
+    platform: iOS
+    sources:
+      - Sources
+      - Resources
