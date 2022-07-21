@@ -23,6 +23,11 @@ settings:
 fileGroups:
   - README.md
 
+packages:
+  AppStoreScraper:
+    url: https://github.com/wacumov/app-store-scraper
+    exactVersion: 0.1.0
+
 targets:
   AppStoreApp:
     type: application
@@ -30,3 +35,5 @@ targets:
     sources:
       - Sources
       - Resources
+    dependencies:
+      - package: AppStoreScraper
