@@ -51,7 +51,7 @@ private extension AppListItem {
         let price: String = {
             var amount = app.price.attributes.amount
             if let value = Double(amount), value == 0.0 {
-                return "GET"
+                return "FREE"
             }
             amount = amount.replacingOccurrences(of: ".00", with: "")
             let currency = app.price.attributes.currency
