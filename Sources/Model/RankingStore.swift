@@ -10,14 +10,14 @@ final class RankingStore: ObservableObject {
         case failure(Error)
     }
 
-    func loadRanking(_ rankingType: RankingType, country: Country, categoryFilter: CategoryFilter) {
+    func loadRanking(_ rankingType: RankingType, country: Country, categoryFilter: CategoryFilter, limit: Int) {
         state = .loading
         Task.detached(priority: .high) { [weak self] in
             guard let self = self else {
                 return
             }
             do {
-                let ranking = try await self.scraper.getRanking(rankingType, country: country, categoryFilter: categoryFilter)
+                let ranking = try await self.scraper.getRanking(rankingType, country: country, categoryFilter: categoryFilter, limit: limit)
                 let items = ranking.applications.enumerated().map {
                     AppListItem($0.element, index: $0.offset)
                 }

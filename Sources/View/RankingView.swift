@@ -6,6 +6,7 @@ struct RankingView: View {
     @Binding var rankingType: RankingType
     @Binding var country: Country
     @Binding var categoryFilter: CategoryFilter
+    @Binding var limit: Int
 
     @State private var isSettingsPresented = false
 
@@ -32,7 +33,8 @@ struct RankingView: View {
                 RankingSettingsView(
                     rankingType: $rankingType,
                     country: $country,
-                    categoryFilter: $categoryFilter
+                    categoryFilter: $categoryFilter,
+                    limit: $limit
                 )
             }
         }
@@ -48,10 +50,13 @@ struct RankingView: View {
         .onChange(of: categoryFilter) { _ in
             refresh()
         }
+        .onChange(of: limit) { _ in
+            refresh()
+        }
     }
 
     private func refresh() {
-        store.loadRanking(rankingType, country: country, categoryFilter: categoryFilter)
+        store.loadRanking(rankingType, country: country, categoryFilter: categoryFilter, limit: limit)
     }
 }
 

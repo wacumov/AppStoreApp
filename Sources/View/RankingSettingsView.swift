@@ -4,6 +4,7 @@ struct RankingSettingsView: View {
     @Binding var rankingType: RankingType
     @Binding var country: Country
     @Binding var categoryFilter: CategoryFilter
+    @Binding var limit: Int
 
     var body: some View {
         NavigationView {
@@ -11,6 +12,7 @@ struct RankingSettingsView: View {
                 rankingTypePicker
                 countryPicker
                 categoryPicker
+                limitPicker
             }
         }
     }
@@ -38,6 +40,15 @@ struct RankingSettingsView: View {
             ForEach(CategoryFilter.allCases, id: \.self) { category in
                 Text(category.name)
                     .tag(category)
+            }
+        }
+    }
+
+    private var limitPicker: some View {
+        Picker(selection: $limit, label: Text("Limit")) {
+            ForEach([10, 20, 50, 100], id: \.self) { limit in
+                Text("\(limit)")
+                    .tag(limit)
             }
         }
     }
