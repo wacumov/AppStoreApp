@@ -9,12 +9,18 @@ struct AppStoreApp: App {
 
     var body: some Scene {
         WindowGroup {
-            RankingView(
-                rankingType: $rankingType,
-                country: $country,
-                categoryFilter: $categoryFilter,
-                limit: $limit
-            )
+            TabView {
+                RankingView(
+                    rankingType: $rankingType,
+                    country: $country,
+                    categoryFilter: $categoryFilter,
+                    limit: $limit
+                )
+                .tabItem {
+                    Image(systemName: "list.bullet")
+                    Text("Rankings")
+                }
+            }
         }
     }
 }
