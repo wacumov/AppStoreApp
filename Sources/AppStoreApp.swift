@@ -20,6 +20,13 @@ struct AppStoreApp: App {
                     Image(systemName: "list.bullet")
                     Text("Rankings")
                 }
+                SearchView(
+                    country: $country
+                )
+                .tabItem {
+                    Image(systemName: "magnifyingglass")
+                    Text("Search")
+                }
             }
         }
     }
