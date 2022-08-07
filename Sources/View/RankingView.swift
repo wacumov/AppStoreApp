@@ -25,9 +25,10 @@ struct RankingView: View {
                 }
             }
             .navigationTitle(rankingType.name)
-            .navigationBarItems(trailing: RankingSettingsButton(
-                isSettingsPresented: $isSettingsPresented
-            )
+            .navigationBarItems(trailing:
+                RankingSettingsButton(
+                    isSettingsPresented: $isSettingsPresented
+                )
             )
             .sheet(isPresented: $isSettingsPresented) {
                 RankingSettingsView(
